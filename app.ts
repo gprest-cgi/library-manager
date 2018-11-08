@@ -1,8 +1,9 @@
 import { Category } from './enums';
+import { Book } from './interfaces';
 
-function getAllBooks() {
-  const books = [
-    { 
+function getAllBooks(): Book[] {
+  const books: Book[] = [
+    {
       id: 1,
       title: 'Ulysses',
       author: 'James Joyce',
@@ -35,7 +36,7 @@ function getAllBooks() {
   return books;
 }
 
-function logFirstAvailable(books: any = getAllBooks()): void {
+function logFirstAvailable(books: Book[] = getAllBooks()): void {
   let firstAvailable: string = '';
   let numberOfBooks: number = books.length;
 
@@ -129,7 +130,24 @@ function getTitles(bookProperty: any): string[] {
     return foundTitles;
 }
 
+function printBook(book: Book): void {
+    console.log(`${book.title} by ${book.author}`);
+}
+
 // *********************************************************************
+
+let myBook: Book = {
+  id: 5,
+  title: 'Pride and Prejudice',
+  author: 'Jane Austen',
+  available: true,
+  category: Category.Fiction,
+  pages: 250,
+  markDamaged: (reason: string) => console.log(`Damaged: ${reason}`)
+};
+
+printBook(myBook);
+myBook.markDamaged('missing back cover');
 
 // const booksByAuthor = getTitles('Herman Melville');
 // booksByAuthor.forEach(title => console.log(`- ${title}`));
