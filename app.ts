@@ -1,5 +1,5 @@
 import { Category } from './enums';
-import { Book } from './interfaces';
+import { Book, DamageLogger } from './interfaces';
 
 function getAllBooks(): Book[] {
   const books: Book[] = [
@@ -146,8 +146,12 @@ let myBook: Book = {
   markDamaged: (reason: string) => console.log(`Damaged: ${reason}`)
 };
 
-printBook(myBook);
-myBook.markDamaged('missing back cover');
+let logDamage: DamageLogger;
+logDamage = (damage: string) => console.log(`Damaged reported: ${damage}`)
+logDamage('coffee stains');
+
+// printBook(myBook);
+// myBook.markDamaged('torn pages');
 
 // const booksByAuthor = getTitles('Herman Melville');
 // booksByAuthor.forEach(title => console.log(`- ${title}`));
