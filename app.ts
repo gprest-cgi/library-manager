@@ -137,8 +137,11 @@ function printBook(book: Book): void {
 
 // *********************************************************************
 
-let refBook = new Encyclopedia('WorldPedia', 1900, 10);
-refBook.printItem();
+let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
+refBook.printCitation();
+
+// let refBook = new Encyclopedia('WorldPedia', 1900, 10);
+// refBook.printItem();
 
 // let ref: ReferenceItem = new ReferenceItem('Facts and Figures', 2018);
 // ref.printItem();
