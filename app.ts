@@ -1,6 +1,6 @@
 import { Category } from './enums';
 import { Author, Book, DamageLogger, Librarian } from './interfaces';
-import { UniversityLibrarian, ReferenceItem } from './classes';
+import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
 
 function getAllBooks(): Book[] {
   const books: Book[] = [
@@ -137,10 +137,13 @@ function printBook(book: Book): void {
 
 // *********************************************************************
 
-let ref: ReferenceItem = new ReferenceItem('Facts and Figures', 2018);
-ref.printItem();
-ref.publisher = 'Random Data Publishing';
-console.log(ref.publisher);
+let refBook = new Encyclopedia('WorldPedia', 1900, 10);
+refBook.printItem();
+
+// let ref: ReferenceItem = new ReferenceItem('Facts and Figures', 2018);
+// ref.printItem();
+// ref.publisher = 'Random Data Publishing';
+// console.log(ref.publisher);
 
 // let favoriteLibrarian: Librarian = new UniversityLibrarian();
 // favoriteLibrarian.name = 'Sharon';
