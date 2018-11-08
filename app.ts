@@ -1,6 +1,6 @@
 import { Category } from './enums';
 import { Author, Book, Logger, Librarian, Magazine } from './interfaces';
-import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
+import { UniversityLibrarian, ReferenceItem } from './classes';
 import { calculateLateFee as calcFee, maxBooksAllowed, purge } from './lib/utilityFunctions';
 import refBook from './encyclopedia';
 import Shelf from './shelf';
