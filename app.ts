@@ -1,7 +1,7 @@
 import { Category } from './enums';
 import { Author, Book, Logger, Librarian } from './interfaces';
 import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
-import { calculateLateFee as calcFee, maxBooksAllowed } from './lib/utilityFunctions';
+import { calculateLateFee as calcFee, maxBooksAllowed, purge } from './lib/utilityFunctions';
 import refBook from './encyclopedia';
 
 function getAllBooks(): Book[] {
@@ -139,8 +139,42 @@ function printBook(book: Book): void {
 
 // *********************************************************************
 
-let reference = new refBook('Fact Book', 2016, 1);
-reference.printCitation();
+let inventory: Array<Book> = [
+  {
+    id: 10,
+    title: 'The C Programming Language',
+    author: 'K & R',
+    available: true,
+    category: Category.Software
+  },
+  {
+    id: 11,
+    title: 'Code Complete',
+    author: 'Steve McConnell',
+    available: true,
+    category: Category.Software
+  },
+  {
+    id: 12,
+    title: '8-bit Graphics with Cobol',
+    author: 'A. B.',
+    available: true,
+    category: Category.Software
+  },
+  {
+    id: 13,
+    title: 'Cool autoexec.bat Scripts!',
+    author: 'C. D.',
+    available: true,
+    category: Category.Software
+  }
+];
+
+let purged: Array<Book> = purge<Book>(inventory);
+purged.forEach(book => console.log(book.title));
+
+// let reference = new refBook('Fact Book', 2016, 1);
+// reference.printCitation();
 
 // let fee = calcFee(5);
 // let max = maxBooksAllowed(4);
