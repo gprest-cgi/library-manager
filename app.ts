@@ -1,25 +1,31 @@
+enum Category { Biography, Poetry, Fiction, History, Children };
+
 function getAllBooks() {
   const books = [
     { 
+      id: 1,
       title: 'Ulysses',
       author: 'James Joyce',
       available: true,
       category: Category.Fiction
     },
     {
+      id: 2,
       title: 'A Farewell to Arms',
       author: 'Ernest Hemingway',
       available: false,
       category: Category.Fiction
     },
     {
+      id: 3,
       title: 'I Know Why the Caged Bird Sings',
       author: 'Maya Anglou',
       available: true,
       category: Category.Poetry
     },
     {
-      title: 'Moby Disk', 
+      id: 4,
+      title: 'Moby Dick', 
       author: 'Herman Melville', 
       available: true,
       category: Category.Fiction
@@ -44,8 +50,6 @@ function logFirstAvailable(books: any): void {
   console.log(`First Available: ${firstAvailable}`);
 }
 
-enum Category { Biography, Poetry, Fiction, History, Children };
-
 function getBookTitlesByCategory(categoryFilter: Category): Array<string> {
     console.log(`Getting books in category: ${Category[categoryFilter]}`);
     const allBooks = getAllBooks();
@@ -64,9 +68,15 @@ function logBookTitles(titles: string[]): void {
     }
 }
 
+function getBookById(id: number) {
+    const allBooks = getAllBooks();
+    return allBooks.filter(book => book.id === id)[0];
+}
+// *********************************************************************
+
 const poetryBooks = getBookTitlesByCategory(Category.Poetry);
 logBookTitles(poetryBooks);
 
 
 const fictionBooks = getBookTitlesByCategory(Category.Fiction);
-logBookTitles(fictionBooks);
+fictionBooks.forEach((val, idx, arr) => console.log(`${++idx} - ${val}`));
