@@ -2,9 +2,7 @@ import { Category } from './enums';
 import { Author, Book, Logger, Librarian } from './interfaces';
 import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
 import { calculateLateFee as calcFee, maxBooksAllowed } from './lib/utilityFunctions';
-
-let fee = calcFee(5);
-let max = maxBooksAllowed(4);
+import refBook from './encyclopedia';
 
 function getAllBooks(): Book[] {
   const books: Book[] = [
@@ -141,24 +139,30 @@ function printBook(book: Book): void {
 
 // *********************************************************************
 
-let Newspaper = class extends ReferenceItem {
-    printCitation(): void {
-        console.log(`Newspaper: ${this.title}`);
-    }
-}
-let myPaper = new Newspaper('The Gazzette', 2016);
-myPaper.printCitation();
+let reference = new refBook('Fact Book', 2016, 1);
+reference.printCitation();
 
+// let fee = calcFee(5);
+// let max = maxBooksAllowed(4);
 
-class Novel extends class { title: string } {
-    mainCharacter: string;
-}
-let favNovel = new Novel();
-favNovel.
+// let Newspaper = class extends ReferenceItem {
+//     printCitation(): void {
+//         console.log(`Newspaper: ${this.title}`);
+//     }
+// }
+// let myPaper = new Newspaper('The Gazzette', 2016);
+// myPaper.printCitation();
+
+// class Novel extends class { title: string } {
+//     mainCharacter: string;
+// }
+// let favNovel = new Novel();
+// favNovel.
+
 // let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
 // refBook.printCitation();
 
-// let refBook = new Encyclopedia('WorldPedia', 1900, 10);
+// refBook = new Encyclopedia('WorldPedia', 1900, 10);
 // refBook.printItem();
 
 // let ref: ReferenceItem = new ReferenceItem('Facts and Figures', 2018);
