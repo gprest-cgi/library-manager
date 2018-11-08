@@ -23,9 +23,9 @@ interface Author extends Person {
     numBooksPublished: number;
 }
 
-interface Library extends Person {
+interface Librarian extends Person {
     department: string;
     assistCustomer: (custName: string) => void;
 }
 
-export { Book, DamageLogger };
+export { Author, Book, DamageLogger, Librarian };

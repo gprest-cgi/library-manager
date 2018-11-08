@@ -1,5 +1,6 @@
 import { Category } from './enums';
 import { Author, Book, DamageLogger, Librarian } from './interfaces';
+import { UniversityLibrarian } from './classes';
 
 function getAllBooks(): Book[] {
   const books: Book[] = [
@@ -136,8 +137,10 @@ function printBook(book: Book): void {
 
 // *********************************************************************
 
-
-
+let favoriteLibrarian: Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Sharon';
+favoriteLibrarian.assistCustomer('Lynda');
+ 
 // let myBook: Book = {
 //   id: 5,
 //   title: 'Pride and Prejudice',
