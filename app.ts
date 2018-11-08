@@ -1,4 +1,4 @@
-enum Category { Biography, Poetry, Fiction, History, Children };
+import { Category } from './enums';
 
 function getAllBooks() {
   const books = [
@@ -131,14 +131,14 @@ function getTitles(bookProperty: any): string[] {
 
 // *********************************************************************
 
-const booksByAuthor = getTitles('Herman Melville');
-booksByAuthor.forEach(title => console.log(`- ${title}`));
+// const booksByAuthor = getTitles('Herman Melville');
+// booksByAuthor.forEach(title => console.log(`- ${title}`));
 
-const booksByAvailable = getTitles(true);
-booksByAvailable.forEach(title => console.log(`- ${title}`));
+// const booksByAvailable = getTitles(true);
+// booksByAvailable.forEach(title => console.log(`- ${title}`));
 
-const booksByNotAvailable = getTitles(false);
-booksByNotAvailable.forEach(title => console.log(`- ${title}`));
+// const booksByNotAvailable = getTitles(false);
+// booksByNotAvailable.forEach(title => console.log(`- ${title}`));
 
 // const thorneBooks: string[] = checkoutBooks('Thorne', 1);
 // thorneBooks.forEach(title => console.log(`- ${title}`));
