@@ -35,7 +35,7 @@ function getAllBooks() {
   return books;
 }
 
-function logFirstAvailable(books: any): void {
+function logFirstAvailable(books: any = getAllBooks()): void {
   let firstAvailable: string = '';
   let numberOfBooks: number = books.length;
 
@@ -50,7 +50,7 @@ function logFirstAvailable(books: any): void {
   console.log(`First Available: ${firstAvailable}`);
 }
 
-function getBookTitlesByCategory(categoryFilter: Category): Array<string> {
+function getBookTitlesByCategory(categoryFilter: Category = Category.Fiction): Array<string> {
     console.log(`Getting books in category: ${Category[categoryFilter]}`);
     const allBooks = getAllBooks();
     const filteredTitles: string[] = [];
@@ -72,11 +72,108 @@ function getBookById(id: number) {
     const allBooks = getAllBooks();
     return allBooks.filter(book => book.id === id)[0];
 }
+
+function createCustomerID(name: string, id: number): string {
+    return `${name}${id}`;
+}
+
+function createCustomer(name: string, age?: number, city?: string) {
+    console.log(`Creating customer ${name}`);
+    if (age) {
+        console.log(`- Age: ${age}`);
+    }
+    if (city) {
+        console.log(`- City: ${city}`);
+    }
+}
+
+function checkoutBooks(name: string, ...bookIDs: number[]): string[] {
+    console.log(`Checking out books for ${name}`);
+    const booksCheckedout: string[] = [];
+    for (const id of bookIDs) {
+        const book = getBookById(id);
+        if (book.available) {
+            booksCheckedout.push(book.title);
+        } else {
+            console.log(`${book.title} is unavailable`);
+        }
+    }
+    return booksCheckedout;
+}
+
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(bookProperty: any): string[] {
+    const foundTitles: string[] = [];
+    const allBooks = getAllBooks();
+    if (typeof bookProperty == 'string') {
+        console.log(`Retrieving books by ${bookProperty}`);
+        for (const book of allBooks) {
+            if (book.author === bookProperty) {
+                foundTitles.push(book.title);
+            }
+        }
+    }
+    if (typeof bookProperty == 'boolean') {
+        let flag: string = '';
+        if (!bookProperty) {
+            flag = ' not';
+        }
+        console.log(`Retrieving books that are${flag} available`);
+        for (const book of allBooks) {
+            if (book.available === bookProperty) {
+                foundTitles.push(book.title);
+            }
+        }
+    }
+    return foundTitles;
+}
+
 // *********************************************************************
 
-const poetryBooks = getBookTitlesByCategory(Category.Poetry);
-logBookTitles(poetryBooks);
+const booksByAuthor = getTitles('Herman Melville');
+booksByAuthor.forEach(title => console.log(`- ${title}`));
 
+const booksByAvailable = getTitles(true);
+booksByAvailable.forEach(title => console.log(`- ${title}`));
 
-const fictionBooks = getBookTitlesByCategory(Category.Fiction);
-fictionBooks.forEach((val, idx, arr) => console.log(`${++idx} - ${val}`));
+const booksByNotAvailable = getTitles(false);
+booksByNotAvailable.forEach(title => console.log(`- ${title}`));
+
+// const thorneBooks: string[] = checkoutBooks('Thorne', 1);
+// thorneBooks.forEach(title => console.log(`- ${title}`));
+
+// const brianBooks: string[] = checkoutBooks('Brian', 4, 2, 3);
+// brianBooks.forEach(title => console.log(`- ${title}`));
+
+// let poetryBooks = getBookTitlesByCategory(Category.Poetry);
+// poetryBooks.forEach(title => console.log(`- ${title}`));
+
+// let fictionBooks = getBookTitlesByCategory();
+// fictionBooks.forEach(title => console.log(`- ${title}`));
+
+// createCustomer('Michelle');
+// createCustomer('Leigh', 6);
+// createCustomer('Marie', 12, 'Atlanta');
+
+// let myID: string = createCustomerID('daniel', 10);
+// console.log(myID);
+
+// let x: number;
+// x = 5;
+
+// let idGenerator: (chars: string, nums: number) => string;
+// idGenerator = createCustomerID;
+
+// myID = idGenerator('daniel', 15);
+// console.log(myID);
+
+// idGenerator = (name: string, id: number) => { return `${id}${name}`; };
+// myID = idGenerator('daniel', 20);
+// console.log(myID);
+
+// const poetryBooks = getBookTitlesByCategory(Category.Poetry);
+// logBookTitles(poetryBooks);
+
+// const fictionBooks = getBookTitlesByCategory(Category.Fiction);
+// fictionBooks.forEach((val, idx, arr) => console.log(`${++idx} - ${val}`));
