@@ -1,5 +1,5 @@
 import { Category } from './enums';
-import { Author, Book, DamageLogger, Librarian } from './interfaces';
+import { Author, Book, Logger, Librarian } from './interfaces';
 import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
 import { calculateLateFee as calcFee, maxBooksAllowed } from './lib/utilityFunctions';
 
