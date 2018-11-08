@@ -175,7 +175,8 @@ let bookShelf: Shelf<Book> = new Shelf<Book>();
 inventory.forEach(book => bookShelf.add(book));
 let firstBook: Book = bookShelf.getFirst();
 console.log(`First book on the book shelf: ${firstBook.title}`);
-
+let softwareBook: Book = bookShelf.find('Code Complete');
+console.log(`${softwareBook.title} (${softwareBook.author})`);
 
 let magazines: Array<Magazine> = [
     {
@@ -195,13 +196,15 @@ let magazineRack: Shelf<Magazine> = new Shelf<Magazine>();
 magazines.forEach(magazine => magazineRack.add(magazine));
 let firstMagazine: Magazine = magazineRack.getFirst();
 console.log(`First magazine on the magazine rack: ${firstMagazine.title}`);
+magazineRack.printTitles();
 
 
-let numbers: Array<number> = [3, 7, 12, 16];
-let numberShelf: Shelf<number> = new Shelf<number>();
-numbers.forEach(num => numberShelf.add(num));
-let firstNumber: number = numberShelf.getFirst();
-console.log(`First number on the number rack: ${firstNumber}`);
+
+// let numbers: Array<number> = [3, 7, 12, 16];
+// let numberShelf: Shelf<number> = new Shelf<number>();
+// numbers.forEach(num => numberShelf.add(num));
+// let firstNumber: number = numberShelf.getFirst();
+// console.log(`First number on the number rack: ${firstNumber}`);
 
 
 
