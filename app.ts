@@ -1,8 +1,9 @@
 import { Category } from './enums';
-import { Author, Book, Logger, Librarian } from './interfaces';
+import { Author, Book, Logger, Librarian, Magazine } from './interfaces';
 import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
 import { calculateLateFee as calcFee, maxBooksAllowed, purge } from './lib/utilityFunctions';
 import refBook from './encyclopedia';
+import Shelf from './shelf';
 
 function getAllBooks(): Book[] {
   const books: Book[] = [
@@ -170,8 +171,42 @@ let inventory: Array<Book> = [
   }
 ];
 
-let purged: Array<Book> = purge<Book>(inventory);
-purged.forEach(book => console.log(book.title));
+let bookShelf: Shelf<Book> = new Shelf<Book>();
+inventory.forEach(book => bookShelf.add(book));
+let firstBook: Book = bookShelf.getFirst();
+console.log(`First book on the book shelf: ${firstBook.title}`);
+
+
+let magazines: Array<Magazine> = [
+    {
+      title: 'Programming Language Monthly',
+      publisher: 'Code Mags'
+    },
+    {
+        title: 'Literary Fiction Quarterly',
+        publisher: 'College Press'
+    },
+    {
+        title: 'Five Points',
+        publisher: 'GSU'
+    },
+];
+let magazineRack: Shelf<Magazine> = new Shelf<Magazine>();
+magazines.forEach(magazine => magazineRack.add(magazine));
+let firstMagazine: Magazine = magazineRack.getFirst();
+console.log(`First magazine on the magazine rack: ${firstMagazine.title}`);
+
+
+let numbers: Array<number> = [3, 7, 12, 16];
+let numberShelf: Shelf<number> = new Shelf<number>();
+numbers.forEach(num => numberShelf.add(num));
+let firstNumber: number = numberShelf.getFirst();
+console.log(`First number on the number rack: ${firstNumber}`);
+
+
+
+// let purged: Array<Book> = purge<Book>(inventory);
+// purged.forEach(book => console.log(book.title));
 
 // let reference = new refBook('Fact Book', 2016, 1);
 // reference.printCitation();
